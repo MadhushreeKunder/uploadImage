@@ -3,6 +3,8 @@ import "./styles.css";
 import axios from "axios";
 
 const CLOUDINARY_URL = process.env.CLOUDINARY_URL;
+const CLOUDINARY_PRESET = process.env.CLOUDINARY_PRESET;
+
 
 export default function App() {
   const [loading, setLoading] = useState(false);
@@ -12,7 +14,7 @@ export default function App() {
     const files = e.target.files;
     const data = new FormData();
     data.append("file", files[0]);
-    data.append("upload_preset", "socialmedia");
+    data.append("upload_preset", `${CLOUDINARY_PRESET}`);
     setLoading(true);
 
     const response = await fetch(`${CLOUDINARY_URL}/image/upload`, {
